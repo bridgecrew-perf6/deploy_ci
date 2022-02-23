@@ -19,10 +19,8 @@ test: ## roda testes
 test_xml: ## roda testes e criar relatorio xml
 	@${MANAGER} pytest -vv --cov=. --cov-report=xml
 
-requirements: ## atualiza arquivo requirements.txt
-	poetry export > requirements.txt
 
-image: #requirements ## constroi imagem docker
+image:
 	echo '...building image'
 	docker build --rm -f ${DOCKERFILE} -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest .
 
