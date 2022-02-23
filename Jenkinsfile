@@ -1,7 +1,7 @@
 node {
     stage('Build') {
         echo 'Building....'
-        sh 'make image'
+        sh 'ls -al'
     }
     stage('Test') {
         echo 'Testing....'
