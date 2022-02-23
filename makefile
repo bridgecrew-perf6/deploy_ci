@@ -22,7 +22,7 @@ test_xml: ## roda testes e criar relatorio xml
 requirements: ## atualiza arquivo requirements.txt
 	poetry export > requirements.txt
 
-image: requirements ## constroi imagem docker
+image: #requirements ## constroi imagem docker
 	echo '...building image'
 	docker build --rm -f ${DOCKERFILE} -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest .
 
