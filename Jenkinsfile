@@ -6,6 +6,7 @@ pipeline {
                 sh 'ls -al'
                 sh 'pwd'
                 sh 'make image'
+                sh 'make push'
             }
         }
     }

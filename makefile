@@ -4,6 +4,8 @@ MANAGER = poetry run
 
 IMAGE = deploy_ci
 DOCKERFILE = 'docker/Dockerfile'
+REGISTRY = harbor.m2digital.com.br
+PROJECT = m2_automation
 
 #-------------------------------------------------------------------------------
 
@@ -23,6 +25,18 @@ test_xml: ## roda testes e criar relatorio xml
 image:
 	echo '...building image'
 	docker build --rm -f ${DOCKERFILE} -t ${IMAGE}:${VERSION} -t ${IMAGE}:latest .
+
+push: tag login
+	docker push ${REGISTRY}/${PROJECT}/${IMAGE}:${VERSION}
+	docker push ${REGISTRY}/${PROJECT}/${IMAGE}:latest
+
+tag:
+	docker tag ${IMAGE}:${VERSION} ${REGISTRY}/${PROJECT}/${IMAGE}:${VERSION}
+	docker tag ${IMAGE}:${VERSION} ${REGISTRY}/${PROJECT}/${IMAGE}:latest
+
+login:
+	docker login ${REGISTRY}
+
 
 .PHONY:run test test_xml build_image
 
