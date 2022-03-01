@@ -2,7 +2,7 @@ FROM python:3.9.9-slim-bullseye
 
 MAINTAINER italo.anjos <italo.anjos@m2center.com.br>
 
-LABEL Automation="Automation"
+LABEL Automation
 
 RUN apt update -y && apt-get install -y \
     gunicorn
