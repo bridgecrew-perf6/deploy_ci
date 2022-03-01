@@ -31,11 +31,8 @@ pipeline {
             steps {
                 sshagent(credentials: ['M2AutomationSRV-02']) {
 
-                        IMAGE_VERSION = sh (script: 'make get_version', returnStdout: true).trim()
-                        IMAGE_REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
-
                         docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-                            dockerapp.pull('latest')
+                            dockerapp.pull()
                         }
 
 //                    sh "docker login harbor.m2digital.com.br"
