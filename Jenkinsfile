@@ -30,15 +30,10 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 sshagent(credentials: ['M2AutomationSRV-02']) {
-                    script {
-                        IMAGE_REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
-                        IMAGE_NAME = sh (script: 'make get_name', returnStdout: true).trim()
-
-                        docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-                            image = docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:latest")
-                            image.pull()
-                        }
-                    }
+                    sh """
+                        docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}
+                        docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:latest
+                    """
 //                    sh '''
 //                        docker rm -f $(docker ps -a --format 'table {{.Names}}' --filter name=^/SOS_ | tail -n +2)
 //                    '''
