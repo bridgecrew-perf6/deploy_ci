@@ -31,9 +31,8 @@ pipeline {
             steps {
 
                 sshagent(credentials: ['M2AutomationSRV-02']) {
-                    sh (script: "ls -al", returnStdout: true).trim()
+                    sh 'ls -al'
                 }
-
             }
         }
     }
