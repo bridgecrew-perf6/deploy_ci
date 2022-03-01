@@ -30,9 +30,11 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 sshagent(credentials: ['M2AutomationSRV-02']) {
-                    sh '''
-                        docker image ls
-                    '''
+                    RESULT = sh (script: 'docker image ls', returnStdout: true).trim()
+                    echo ${RESULT}
+//                    sh '''
+//                        docker image ls
+//                    '''
                 }
             }
         }
