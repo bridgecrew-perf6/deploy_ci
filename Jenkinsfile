@@ -29,6 +29,14 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
+                script {
+                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
+                        dockerapp.pull('latest')
+                    }
+                }
+            }
+
+            steps {
                 sshagent(credentials: ['M2AutomationSRV-02']) {
                     sh '''
                         docker rm -f $(docker ps -a --format 'table {{.Names}}' --filter name=^/SOS_ | tail -n +2)
