@@ -31,9 +31,8 @@ pipeline {
             steps {
 
                 sshagent(credentials: ['M2AutomationSRV-02']) {
-                    def RESULT = sh (script: "ls -al", returnStdout: true).trim()
+                    sh (script: "ls -al", returnStdout: true).trim()
                 }
-                sh 'echo ${RESULT}'
 
             }
         }
