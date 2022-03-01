@@ -32,7 +32,7 @@ pipeline {
 
                 sshagent(credentials: ['M2AutomationSRV-02']) {
                     script {
-                        RESULT = sh (script: """docker ps -a --format "table {{.Names}}" --filter name=^/Vivo""", returnStdout: true).trim()
+                        RESULT = sh (script: "ls -al", returnStdout: true).trim()
                     }
 
 
