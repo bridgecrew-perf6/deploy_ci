@@ -2,7 +2,7 @@ FROM python:3.9.9-slim-bullseye
 
 MAINTAINER italo.anjos <italo.anjos@m2center.com.br>
 
-LABEL teste="teste1"
+LABEL teste=teste1
 
 RUN apt update -y && apt-get install -y \
     gunicorn
