@@ -30,8 +30,8 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 sshagent(credentials: ['M2AutomationSRV-02']) {
-                    def RESULT = sh (docker ps -a --format 'table {{.Names}}' --filter name=^/SOS_ | tail -n +2)
-                    
+                    def RESULT = sh "docker ps -a --format 'table {{.Names}}' --filter name=^/SOS_ | tail -n +2"
+
 
 //                        docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
 //                            dockerapp.pull()
