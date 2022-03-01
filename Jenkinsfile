@@ -3,16 +3,14 @@ pipeline {
     stages {
         stage('Build Image') {
             steps {
+
                 script {
-                    IMAGE_NAME = sh (
+                    IMAGE_NAME = sh ( // get image name
                         script: 'make get_image_name', returnStdout: true
                     ).trim()
-                    echo "Image name: ${IMAGE_NAME}"
+                    dockerapp = docker.build("${IMAGE_NAME}", "-f ./docker/Dockerfile .")
                 }
 
-//                script {
-//                    dockerapp = docker.build("deploy_ci:nova", "-f ./docker/Dockerfile .")
-//                }
             }
         }
     }
