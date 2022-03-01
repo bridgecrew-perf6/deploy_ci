@@ -29,7 +29,7 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                sshagent(credentials: ' M2AutomationSRV-02') {
+                sshagent(credentials: 'M2AutomationSRV-02') {
                     sh '''
                         ls -al
                     '''
