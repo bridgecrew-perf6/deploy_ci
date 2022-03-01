@@ -33,7 +33,7 @@ pipeline {
                     script {
                         IMAGE_REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
                         docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-                            dockerapp.pull('latest')
+                            dockerapp.pull()
                         }
                     }
 
