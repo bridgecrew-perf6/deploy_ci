@@ -31,22 +31,7 @@ pipeline {
             steps {
 
                 sshagent(credentials: ['M2AutomationSRV-02']) {
-                    script {
-                        RESULT = sh (script: "ls -al", returnStdout: true).trim()
-                    }
-
-
-//                        docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-//                            dockerapp.pull()
-//                        }
-
-//                    sh "docker login harbor.m2digital.com.br"
-//                    sh "docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}"
-//                    sh "docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:latest"
-
-//                    sh '''
-//                        docker rm -f $(docker ps -a --format 'table {{.Names}}' --filter name=^/SOS_ | tail -n +2)
-//                    '''
+                    RESULT = sh (script: "ls -al", returnStdout: true).trim()
                 }
                 sh 'echo ${RESULT}'
 
