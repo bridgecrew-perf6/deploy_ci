@@ -29,17 +29,15 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                script {
-                    IMAGE_REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
-
-                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-                        dockerapp.pull('latest')
-                    }
-                }
-            }
-
-            steps {
                 sshagent(credentials: ['M2AutomationSRV-02']) {
+                    script {
+                        IMAGE_REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
+                        docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
+                            dockerapp.pull('latest')
+                        }
+                    }
+
+
                     sh '''
                         docker rm -f $(docker ps -a --format 'table {{.Names}}' --filter name=^/SOS_ | tail -n +2)
                     '''
