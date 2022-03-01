@@ -29,10 +29,9 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-
                 sshagent(credentials: ['M2AutomationSRV-02']) {
                     sh """
-                        docker ps -a --format "table {{.Names}}" --filter name=^/Vivo
+                    cat /etc/*-release
                     """
                 }
             }
