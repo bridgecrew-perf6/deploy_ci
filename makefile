@@ -37,8 +37,14 @@ tag:
 login:
 	docker login ${REGISTRY}
 
+get_version:
+	@echo ${VERSION}
+
 get_image_name:
 	@echo ${IMAGE}:${VERSION}
+
+get_registry:
+	@echo ${REGISTRY}/${PROJECT}
 
 .PHONY:run test test_xml build_image
 
