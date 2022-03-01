@@ -40,7 +40,7 @@ login:
 get_version:
 	@echo ${VERSION}
 
-get_image_name:
+get_name:
 	@echo ${IMAGE}:${VERSION}
 
 get_registry:
