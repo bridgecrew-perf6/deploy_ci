@@ -1,12 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Build Image') {
             steps {
-                sh 'ls -al'
-                sh 'pwd'
-                sh 'make image'
-                sh 'make push'
+                script {
+                    dockerapp = docker.build("italojohnny/api-produto", "-f ./docker/Dockerfile")
+                }
             }
         }
     }
