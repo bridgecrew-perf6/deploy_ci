@@ -15,6 +15,7 @@ pipeline {
         stage('Push Image') {
             steps {
                 script {
+                    IMAGE_VERSION = sh (script: 'make get_version', returnStdout: true).trim()
                     IMAGE_REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
 
                     docker.withRegistry("https://harbor.m2digital.com.br/", 'm2_harbor')
