@@ -12,16 +12,16 @@ pipeline {
 
             }
         }
-//        stage('Push Image') {
-//            steps {
-//                script {
-//                    IMAGE_REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
-//
-//                    docker.withRegistry('${IMAGE_REGISTRY}', 'm2_harbor')
-//                    dockerapp.push('${IMAGE_VERSION}')
-//                    dockerapp.push('latest')
-//                }
-//            }
-//        }
+        stage('Push Image') {
+            steps {
+                script {
+                    IMAGE_REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
+
+                    docker.withRegistry('${IMAGE_REGISTRY}', 'm2_harbor')
+                    dockerapp.push('${IMAGE_VERSION}')
+                    dockerapp.push('latest')
+                }
+            }
+        }
     }
 }
