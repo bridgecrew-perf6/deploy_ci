@@ -17,7 +17,7 @@ pipeline {
                 script {
                     IMAGE_REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
 
-                    docker.withRegistry('https://${IMAGE_REGISTRY}', 'm2_harbor')
+                    docker.withRegistry("https://${IMAGE_REGISTRY}", 'm2_harbor')
                     dockerapp.push("${IMAGE_VERSION}")
                     dockerapp.push('latest')
                 }
