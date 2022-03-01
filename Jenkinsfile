@@ -31,7 +31,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['M2AutomationSRV-02']) {
                     sh '''
-                        ls -al
+                        docker image ls
                     '''
                 }
             }
