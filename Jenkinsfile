@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 sshagent(credentials: ['M2AutomationSRV-02']) {
-                    sh "docker login ${IMAGE_REGISTRY}"
+                    sh "docker login harbor.m2digital.com.br
                     sh "docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}"
                     sh "docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:latest"
 
