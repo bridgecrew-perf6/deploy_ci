@@ -29,12 +29,14 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                sshagent(credentials: ['M2AutomationSRV-02']) {
-                    RESULT = sh (script: 'docker image ls', returnStdout: true).trim()
-                    sh "echo ${RESULT}"
-//                    sh '''
-//                        docker image ls
-//                    '''
+                script {
+                    sshagent(credentials: ['M2AutomationSRV-02']) {
+                        RESULT = sh (script: 'docker ps -a', returnStdout: true).trim()
+                        sh "echo ${RESULT}"
+//                        sh '''
+//                            docker image ls
+//                        '''
+                    }
                 }
             }
         }
