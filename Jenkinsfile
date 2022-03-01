@@ -33,5 +33,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy Container') {
+            steps {
+                script {
+                    sh 'echo italojohnny'
+                }
+            }
+        }
     }
 }
