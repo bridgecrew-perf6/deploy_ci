@@ -45,7 +45,7 @@ pipeline {
 //                        docker rm -f $(docker ps -a --format 'table {{.Names}}' --filter name=^/SOS_ | tail -n +2)
 //                    '''
                 }
-                sh echo ${RESULT}
+                sh 'echo ${RESULT}'
             }
         }
     }
