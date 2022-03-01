@@ -41,7 +41,7 @@ get_version:
 	@echo ${VERSION}
 
 get_name:
-	@echo ${IMAGE}:${VERSION}
+	@echo ${IMAGE}
 
 get_registry:
 	@echo ${REGISTRY}/${PROJECT}
