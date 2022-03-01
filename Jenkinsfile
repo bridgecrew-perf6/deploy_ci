@@ -16,7 +16,6 @@ pipeline {
             steps {
                 script {
                     REGISTRY = sh (script: 'make get_registry', returnStdout: true).trim()
-                    VERSION = sh (script: 'make get_version', returnStdout: true).trim()
 
                     docker.withRegistry('${REGISTRY}', 'm2_harbor')
                     dockerapp.push('${VERSION}')
