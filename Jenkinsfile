@@ -30,10 +30,10 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 sshagent(credentials: ['M2AutomationSRV-02']) {
-                    sh """
-                        docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}
-                        docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:latest
-                    """
+                    sh "docker login ${IMAGE_REGISTRY}"
+                    sh "docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}"
+                    sh "docker pull ${IMAGE_REGISTRY}/${IMAGE_NAME}:latest"
+
 //                    sh '''
 //                        docker rm -f $(docker ps -a --format 'table {{.Names}}' --filter name=^/SOS_ | tail -n +2)
 //                    '''
