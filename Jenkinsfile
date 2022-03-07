@@ -31,10 +31,7 @@ pipeline {
             steps {
                 script {
                     sshagent (credentials: ['M2AutomationSRV-02']) {
-                        sh '''
-                            ssh 192.168.0.77
-                            cat /etc/os-release
-                        '''
+                        sh "ssh -o StrictHostKeyChecking=no -l ubuntu 192.168.0.77 'whoami'"
                     }
 //                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
 //                        docker.withServer('tcp://192.168.0.77:2376', '') {
