@@ -31,7 +31,8 @@ pipeline {
             steps {
                 sctipt {
                     docker.withServer('tcp://192.168.0.77:2375') {
-                        dockerapp.pull("${IMAGE_VERSION}")
+                        dockerapp.pull("${IMAGE_VERSION}") {
+                        }
                     }
                 }
             }
