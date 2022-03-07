@@ -30,12 +30,10 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    try {
-                        sshagent (credentials: ['M2AutomationSRV-02']) {
-                            sh "ssh -o StrictHostKeyChecking=no 192.168.0.77 'cat /etc/os-release'"
-                        }
-                    } catch (Exception e) {
-                        echo 'Exception occurred: ' + e.toString()
+                    sshagent (credentials: ['M2AutomationSRV-02']) {
+                        sh """ssh -o StrictHostKeyChecking=no 192.168.0.77 \
+                            cat /etc/os-release
+                        """
                     }
 
 //                    //docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
