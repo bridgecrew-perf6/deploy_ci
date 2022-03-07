@@ -34,7 +34,7 @@ pipeline {
                         def passwd = 'M2Digital$Harbor'
                         sh """ssh -o StrictHostKeyChecking=no 192.168.0.77 \
                             cat /etc/os-release && \
-                            docker login -u admin -p ${passwd} https://harbor.m2digital.com.br/m2_automation/
+                            docker login -u admin -p ${passwd} https://harbor.m2digital.com.br
                         """
                     }
 
