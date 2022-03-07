@@ -30,12 +30,15 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-                        docker.withServer('tcp://192.168.0.77:2376', '') {
-                            docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
-                            }
-                        }
+                    sshagent (credentials: ['italo']) {
+                        sh 'ls -al'
                     }
+//                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
+//                        docker.withServer('tcp://192.168.0.77:2376', '') {
+//                            docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
+//                            }
+//                        }
+//                    }
                 }
             }
         }
