@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    sshagent (credentials: ['M2AutomationSRV-02']) {
+                    sshagent (credentials: ['italo']) {
                         def passwd = 'M2Digital\\$Harbor'
                         sh """ssh -o StrictHostKeyChecking=no 192.168.0.77 \
                             cat /etc/os-release && \
