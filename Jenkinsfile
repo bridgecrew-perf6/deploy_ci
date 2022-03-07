@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     sshagent (credentials: ['M2AutomationSRV-02']) {
-                        def passwd = 'M2Digital$Harbor'
+                        def passwd = 'M2Digital\$Harbor'
                         sh """ssh -o StrictHostKeyChecking=no 192.168.0.77 \
                             cat /etc/os-release && \
                             docker login -u admin -p ${passwd} https://harbor.m2digital.com.br
