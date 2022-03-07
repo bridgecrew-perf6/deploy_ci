@@ -39,7 +39,10 @@ pipeline {
                     }
 
                     docker_server = docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
-                        dockerapp.pull("${IMAGE_VERSION}")
+                        docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
+                            dockerapp.pull("${IMAGE_VERSION}")
+                        }
+
                         //docker.image("harbor.m2digital.com.br/m2_automation/deploy_ci:latest").withRun('') {
                         //}
 
