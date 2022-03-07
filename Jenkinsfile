@@ -30,10 +30,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 sctipt {
-                    docker.withServer('tcp://192.168.0.77:2375') {
-                        dockerapp.pull("${IMAGE_VERSION}") {
-                        }
-                    }
+                    sh 'echo hello world'
                 }
             }
         }
