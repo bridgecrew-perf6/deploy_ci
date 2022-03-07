@@ -38,7 +38,7 @@ pipeline {
                         echo 'Exception occurred: ' + e.toString()
                     }
 
-                    docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
+                    //docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
                         docker.withRegistry('https://harbor.m2digital.com.br', 'm2_harbor') {
                             dockerapp.pull("${IMAGE_VERSION}")
                         }
@@ -50,7 +50,7 @@ pipeline {
                         //    docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
                         //    }
                         //}
-                    }
+                    //}
 
                 }
             }
