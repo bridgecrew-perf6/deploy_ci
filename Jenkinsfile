@@ -31,6 +31,9 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
+                        docker.image("${IMAGE_NAME}").inside {
+                            sh 'make test'
+                        }
                     }
                 }
             }
