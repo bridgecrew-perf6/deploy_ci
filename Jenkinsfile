@@ -32,11 +32,11 @@ pipeline {
                 script {
                     sshagent (credentials: ['italo']) {
                         def passwd = 'M2Digital\\$Harbor'
-                        sh """ssh -o StrictHostKeyChecking=no 192.168.0.77 \
-                            cat /etc/os-release && \
-                            docker login -u admin -p ${passwd} https://harbor.m2digital.com.br && \
-                            docker run -d --name deploy_ci harbor.m2digital.com.br/m2_automation/deploy_ci:latest && \
-                            cat /etc/os-release
+                        sh """
+                            ssh -o StrictHostKeyChecking=no 192.168.0.77 cat /etc/os-release
+                            ssh -o StrictHostKeyChecking=no 192.168.0.77 docker login -u admin -p ${passwd} https://harbor.m2digital.com.br
+                            ssh -o StrictHostKeyChecking=no 192.168.0.77 docker run -d --name deploy_ci harbor.m2digital.com.br/m2_automation/deploy_ci:latest
+                            ssh -o StrictHostKeyChecking=no 192.168.0.77 cat /etc/os-release
                         """
                     }
 
