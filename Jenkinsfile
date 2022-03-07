@@ -40,7 +40,7 @@ pipeline {
 
                     //docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
 
-                    withDockerServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
+                    withDockerServer(uri: 'tcp://192.168.0.77:2376', credentialsId: 'M2AutomationSRV-02') {
                         docker.withRegistry('https://harbor.m2digital.com.br', 'm2_harbor') {
 
                             //dockerapp.pull("${IMAGE_VERSION}")
