@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    sshagent (credentials: ['italo']) {
+                    sshagent (credentials: ['M2AutomationSRV-02']) {
                         sh 'ls -al'
                     }
 //                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
