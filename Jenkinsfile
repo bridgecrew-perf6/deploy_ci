@@ -29,10 +29,10 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                sshagent(credentials: ['M2AutomationSRV-02']) {
-                    sh """
-                    cat /etc/*-release
-                    """
+                sctipt {
+                    docker.withServer('tcp://192.168.0.77:2375', 'italo') {
+                        dockerImage.pull("${IMAGE_NAME}")
+                    }
                 }
             }
         }
