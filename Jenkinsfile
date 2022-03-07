@@ -29,7 +29,7 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                sctipt {
+                script {
                     sh 'echo hello world'
                 }
             }
