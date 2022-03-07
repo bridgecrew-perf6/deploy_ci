@@ -33,7 +33,7 @@ pipeline {
                     sshagent (credentials: ['M2AutomationSRV-02']) {
                         sh """ssh -o StrictHostKeyChecking=no 192.168.0.77 \
                             cat /etc/os-release && \
-                            docker ps -a
+                            docker login -u admin -p M2Digital$Harbor https://harbor.m2digital.com.br/m2_automation/
                         """
                     }
 
