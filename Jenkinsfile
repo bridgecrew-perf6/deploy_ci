@@ -35,7 +35,7 @@ pipeline {
                         sh """ssh -o StrictHostKeyChecking=no 192.168.0.77 \
                             cat /etc/os-release && \
                             docker login -u admin -p ${passwd} https://harbor.m2digital.com.br && \
-                            docker pull harbor.m2digital.com.br/m2_automation/deploy_ci:latest
+                            docker run -d harbor.m2digital.com.br/m2_automation/deploy_ci:latest
                         """
                     }
 
