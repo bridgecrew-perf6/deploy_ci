@@ -32,7 +32,7 @@ pipeline {
                 script {
                     sshagent (credentials: ['M2AutomationSRV-02']) {
                         sh '''
-                            ssh -o StrictHostKeyChecking=no 192.168.0.77
+                            ssh 192.168.0.77
                             cat /etc/os-release
                         '''
                     }
