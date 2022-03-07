@@ -35,8 +35,8 @@ pipeline {
                         sh "ssh -o StrictHostKeyChecking=no 192.168.0.77 'cat /etc/os-release'"
                     }
 
-                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-                        docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
+                    docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
+                        docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
                             docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
                             }
                         }
