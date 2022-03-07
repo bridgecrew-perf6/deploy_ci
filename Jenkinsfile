@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     sshagent (credentials: ['M2AutomationSRV-02']) {
-                        sh 'cat /etc/os-release'
+                        sh 'ssh -o StrictHostKeyChecking=no -l cloudbees 192.168.0.77 uname -a'
                     }
 //                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
 //                        docker.withServer('tcp://192.168.0.77:2376', '') {
