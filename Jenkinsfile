@@ -36,7 +36,7 @@ pipeline {
                     }
 
                     docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-                        docker.withServer('tcp://192.168.0.77:2376', '') {
+                        docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
                             docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
                             }
                         }
