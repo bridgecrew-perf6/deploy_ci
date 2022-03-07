@@ -31,7 +31,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-                        docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}")
+                        docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
+                        }
                     }
                 }
             }
