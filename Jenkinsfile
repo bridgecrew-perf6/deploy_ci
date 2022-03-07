@@ -42,7 +42,7 @@ pipeline {
                         docker.withRegistry('https://harbor.m2digital.com.br', 'm2_harbor') {
                             //dockerapp.pull("${IMAGE_VERSION}")
 
-                            docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('-p 3306:3306') {
+                            docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('-d') {
                                 /* do things */
                             }
                         }
