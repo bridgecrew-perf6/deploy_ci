@@ -30,7 +30,11 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    sh 'echo hello world'
+                    docker.withServer('tcp://192.168.0.77:2376', 'italo') {
+                        docker.image('mysql:5').withRun('-p 3306:3306') {
+                            /* do things */
+                        }
+                    }
                 }
             }
         }
