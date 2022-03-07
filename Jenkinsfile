@@ -30,15 +30,18 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
+
                     sshagent (credentials: ['M2AutomationSRV-02']) {
                         sh "ssh -o StrictHostKeyChecking=no 192.168.0.77 'cat /etc/os-release'"
                     }
-//                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-//                        docker.withServer('tcp://192.168.0.77:2376', '') {
-//                            docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
-//                            }
-//                        }
-//                    }
+
+                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
+                        docker.withServer('tcp://192.168.0.77:2376', '') {
+                            docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
+                            }
+                        }
+                    }
+
                 }
             }
         }
