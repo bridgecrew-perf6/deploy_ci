@@ -32,7 +32,8 @@ pipeline {
                 script {
                     sshagent (credentials: ['M2AutomationSRV-02']) {
                         sh """ssh -o StrictHostKeyChecking=no 192.168.0.77 \
-                            cat /etc/os-release
+                            cat /etc/os-release && \
+                            docker ps -a
                         """
                     }
 
