@@ -41,14 +41,14 @@ pipeline {
                     //docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
 
                     withDockerServer(uri: 'tcp://192.168.0.77:2376', credentialsId: 'M2AutomationSRV-02') {
-                        docker.withRegistry('https://harbor.m2digital.com.br', 'm2_harbor') {
+                        //docker.withRegistry('https://harbor.m2digital.com.br', 'm2_harbor') {
 
                             //dockerapp.pull("${IMAGE_VERSION}")
 
                             docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
                                 /* do things */
                             }
-                        }
+                        //}
 
                         //docker.image("harbor.m2digital.com.br/m2_automation/deploy_ci:latest").withRun('') {
                         //}
