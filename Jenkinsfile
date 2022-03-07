@@ -30,9 +30,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    docker.withServer('tcp://192.168.0.77:2376') {
-                        docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-                        }
+                    docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
                     }
                 }
             }
