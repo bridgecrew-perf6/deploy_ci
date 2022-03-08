@@ -33,36 +33,12 @@ pipeline {
                     sshagent (credentials: ['italo']) {
                         def passwd = 'M2Digital\\$Harbor'
                         sh """
-                            ssh -o StrictHostKeyChecking=no 192.168.0.77 cat /etc/os-release
                             ssh -o StrictHostKeyChecking=no 192.168.0.77 "\
-                                docker login -u admin -p ${passwd} https://harbor.m2digital.com.br; \
-                                docker run -d --name deploy_ci harbor.m2digital.com.br/m2_automation/deploy_ci:latest"
-                            ssh -o StrictHostKeyChecking=no 192.168.0.77 cat /etc/os-release
+                            docker rm -f \\$(docker ps -a --format "table {{.Names}}" --filter name=^/deploy_ci | tail -n +2) \
+                            docker login -u admin -p ${passwd} https://harbor.m2digital.com.br; \
+                            docker run -d --name deploy_ci harbor.m2digital.com.br/m2_automation/deploy_ci:latest"
                         """
                     }
-
-//                    //docker.withServer('tcp://192.168.0.77:2376', 'M2AutomationSRV-02') {
-//
-//                    //withDockerServer(uri: 'tcp://192.168.0.77:2376', credentialsId: 'M2AutomationSRV-02') {
-//
-//                        //docker.withRegistry('https://harbor.m2digital.com.br', 'm2_harbor') {
-//
-//                            //dockerapp.pull("${IMAGE_VERSION}")
-//
-//                            docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
-//                                /* do things */
-//                            }
-//                        //}
-//
-//                        docker.image("harbor.m2digital.com.br/m2_automation/deploy_ci:latest").withRun('') {
-//                        }
-//
-//                        //docker.withRegistry("https://${IMAGE_REGISTRY}/", 'm2_harbor') {
-//                        //    docker.image("${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}").withRun('') {
-//                        //    }
-//                        //}
-//                    //}
-
                 }
             }
         }
