@@ -32,7 +32,7 @@ pipeline {
                 script {
                     sshagent (credentials: ['italo']) {
                         def passwd = 'M2Digital\\$Harbor'
-                        sh 'ssh -o StrictHostKeyChecking=no 192.168.0.77 docker rm -f \\$(docker ps -a --format "table {{.Names}}" --filter name=^/deploy_ci | tail -n +2)'
+                        sh 'ssh -o StrictHostKeyChecking=no 192.168.0.77 docker rm -f $(docker ps -a --format "table {{.Names}}" --filter name=^/deploy_ci | tail -n +2)'
                         sh """
                             ssh -o StrictHostKeyChecking=no 192.168.0.77 "\
                             docker login -u admin -p ${passwd} https://harbor.m2digital.com.br; \
